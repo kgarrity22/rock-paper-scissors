@@ -66,3 +66,23 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+body {
+  background: #0081a7;
+  color: #00afb9;
+}
+
+/*
+need to shake left and right
+*/
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 50%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
