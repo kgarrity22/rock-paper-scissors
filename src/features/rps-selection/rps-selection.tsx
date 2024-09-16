@@ -1,4 +1,4 @@
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Typography, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "./rps-selection-card";
 import { useState } from "react";
 
@@ -17,13 +17,44 @@ export const RPSSelection = () => {
   ];
   const [userSelectedOption, setUserSelectedOption] =
     useState<RPSSelection | null>(null);
+
+  const theme = useTheme();
   return (
-    <Box>
-      <Typography variant="h3">Make your choice:</Typography>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h1"
+          sx={{
+            mb: theme.spacing(2),
+            fontSize: { xs: 80, sm: 100 },
+          }}
+        >
+          Rock, Paper Scissors!
+        </Typography>
+        <Typography
+          sx={{
+            typography: { sm: "h3", xs: "h4" },
+            mb: {
+              xs: theme.spacing(4),
+              sm: theme.spacing(6),
+            },
+          }}
+        >
+          Make your choice:
+        </Typography>
         <Grid2 container columnSpacing={5} rowSpacing={3}>
           {rpsOptions.map((option) => (
-            <Grid2 size={{ xs: 12, sm: 4 }} key={option.name}>
+            <Grid2
+              size={{ xs: 12, sm: 4 }}
+              key={option.name}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
               <RPSSelectionCard
                 text={option.icon}
                 onClick={() => {
@@ -34,7 +65,7 @@ export const RPSSelection = () => {
           ))}
         </Grid2>
       </Box>
-    </Box>
+    </>
   );
 };
 

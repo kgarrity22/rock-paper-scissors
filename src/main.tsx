@@ -4,12 +4,13 @@ import "./style.css";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/theme";
 import { RPS } from "./features";
+import { Layout } from "./components/layout";
 
 const router = createBrowserRouter([
   {
     path: "",
-    element: <RPS />,
-    // children: [{ path: "/", element: <></> }],
+    element: <Layout />,
+    children: [{ path: "/", element: <RPS /> }],
   },
 ]);
 

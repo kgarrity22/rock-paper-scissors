@@ -47,50 +47,50 @@ export const themeOptions: ThemeOptions = {
       xl: 1536,
     },
   },
-  //   typography: {
-  //     h1: {
-  //       fontFamily: "Canela Text",
-  //       fontWeight: 200,
-  //     },
-  //     h2: {
-  //       fontFamily: "Canela Text",
-  //     },
-  //     h3: {
-  //       fontFamily: "Canela Text Thin",
-  //       fontWeight: 200,
-  //     },
-  //     h4: {
-  //       fontFamily: "Aeonik Light",
-  //       fontWeight: 200,
-  //     },
-  //     h5: {
-  //       fontFamily: "Aeonik",
-  //     },
-  //     h6: {
-  //       fontFamily: "Aeonik",
-  //     },
-  //     body1: {
-  //       fontFamily: "Aeonik",
-  //       fontSize: 16,
-  //     },
-  //     caption: {
-  //       fontWeight: 700,
-  //       fontFamily: "Aeonik",
-  //       fontSize: 14,
-  //       color: "black",
-  //     },
-  //     button: {
-  //       fontFamily: "Canela Text",
-  //       fontSize: 16,
-  //       fontWeight: 200,
-  //       textTransform: "none",
-  //     },
-  //     body2: {
-  //       fontFamily: "Aeonik",
-  //       fontSize: 12,
-  //     },
-  //     fontFamily: "Canela Text",
-  //   },
+  typography: {
+    h1: {
+      fontFamily: "Lilita One",
+      fontWeight: 200,
+    },
+    h2: {
+      fontFamily: "Nunito",
+      fontWeight: 600,
+    },
+    h3: {
+      fontFamily: "Nunito",
+    },
+    h4: {
+      fontFamily: "Manrope",
+      fontWeight: 200,
+    },
+    h5: {
+      fontFamily: "Manrope",
+    },
+    h6: {
+      fontFamily: "Nunito",
+    },
+    body1: {
+      fontFamily: "Manrope",
+      fontSize: 16,
+    },
+    caption: {
+      fontWeight: 700,
+      fontFamily: "Manrope",
+      fontSize: 14,
+      color: "black",
+    },
+    button: {
+      fontFamily: "Manrope",
+      fontSize: 16,
+      fontWeight: 200,
+      textTransform: "none",
+    },
+    body2: {
+      fontFamily: "Nunito",
+      fontSize: 12,
+    },
+    fontFamily: "Nunito",
+  },
 };
 
 export const theme = createTheme(themeOptions);
