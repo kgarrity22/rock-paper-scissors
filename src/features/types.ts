@@ -4,3 +4,9 @@ export type RPSSelectionOption = {
   name: RPSSelectionType;
   icon: string;
 };
+
+export type RPSGameHistoryType = {
+  wins: number;
+  ties: number;
+  losses: number;
+};
