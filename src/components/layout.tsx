@@ -11,8 +11,8 @@ export const Layout = () => {
           sm: theme.spacing(5),
         },
         mt: {
-          xs: theme.spacing(3),
-          sm: theme.spacing(5),
+          xs: theme.spacing(1),
+          sm: theme.spacing(1),
         },
         mb: {
           xs: theme.spacing(3),

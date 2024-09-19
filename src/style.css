@@ -6,14 +6,55 @@ body {
 /*
 need to shake left and right
 */
-@keyframes shake {
+@keyframes shake-left {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) rotate(-90deg);
   }
   50% {
-    transform: translate(0, 50%);
+    transform: translate(0, 50%) rotate(-90deg);
   }
   100% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) rotate(-90deg);
   }
 }
+
+@keyframes shake-right {
+  0% {
+    transform: translate(0, 0) scale(-1, 1) rotate(-90deg);
+  }
+  50% {
+    transform: translate(0, 50%) scale(-1, 1) rotate(-90deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(-1, 1) rotate(-90deg);
+  }
+}
+
+/* .showcase {
+  transform: translate(50%, -50%);
+}
+
+.hide {
+  opacity: 0;
+  display: none;
+} */
+
+.shake-left {
+  transform: rotate(-90deg);
+  /* animation: shake-left 0.7s 4 ease;
+  animation-delay: 3.5s; */
+}
+
+.shake-right {
+  transform: scale(-1, 1) rotate(-90deg);
+  /* animation: shake-right 0.7s 4 ease;
+  animation-delay: 3.5s; */
+}
+
+/* .active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 300px;
+} */
