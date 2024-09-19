@@ -1,14 +1,14 @@
-import { Box, Grid2, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "./rps-selection-card";
 import { RPSSelectionOption, RPSSelectionType } from "../types";
 
 // Selection screen for the user in game of rps
 export const RPSSelection = ({
-  userSelection,
-  setUserSelection,
+  userSelectedOption,
+  setUserSelectedOption,
 }: {
-  userSelection: RPSSelectionType | null;
-  setUserSelection: (s: RPSSelectionType) => void;
+  userSelectedOption: RPSSelectionType | null;
+  setUserSelectedOption: (s: RPSSelectionType) => void;
 }) => {
   const rpsOptions: RPSSelectionOption[] = [
     { name: "Rock", icon: "✊" },
@@ -18,66 +18,49 @@ export const RPSSelection = ({
 
   const theme = useTheme();
   return (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          variant="h1"
+    <Box
+      display="flex"
+      flexWrap="wrap"
+      width="100%"
+      alignItems="center"
+      justifyContent={userSelectedOption ? "flex-start" : "center"}
+      sx={{
+        position: "relative",
+        height: userSelectedOption ? 0 : "unset",
+      }}
+    >
+      {rpsOptions.map((option: RPSSelectionOption) => (
+        <Box
+          key={option.name}
           sx={{
-            mb: theme.spacing(2),
-            fontSize: { xs: 80, sm: 100 },
-            // opacity: userSelection ? 0 : 1,
-            // transition: "opacity 1s ease",
+            m: !userSelectedOption ? theme.spacing(2.5) : 0,
+            mt: 0,
+            width:
+              !userSelectedOption || userSelectedOption === option.name
+                ? 200
+                : 0,
+            opacity:
+              !userSelectedOption || userSelectedOption === option.name ? 1 : 0,
+            transform:
+              userSelectedOption === option.name
+                ? "scale(0.4) translate(-70%, -140%)"
+                : "",
+            transition:
+              "opacity 0.5s ease, margin 0.5s ease, width 2s ease, transform 1s ease 1s",
           }}
         >
-          Rock, Paper Scissors!
-        </Typography>
-        <Typography
-          sx={{
-            typography: { sm: "h3", xs: "h4" },
-            mb: {
-              xs: theme.spacing(4),
-              sm: theme.spacing(6),
-            },
-            color: "white",
-            // opacity: userSelection ? 0 : 1,
-            // transition: "opacity 1s ease",
-          }}
-        >
-          Make your choice:
-        </Typography>
-        <Grid2 container columnSpacing={5} rowSpacing={3}>
-          {rpsOptions.map((option: RPSSelectionOption) => (
-            <Grid2
-              className={userSelection === option.name ? "showcase" : ""}
-              size={{ xs: 12, sm: 4 }}
-              key={option.name}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                // opacity:
-                //   !userSelection || userSelection === option.name ? 1 : 0,
-                // transition: "transform 1s ease, opacity 1s ease",
-              }}
-            >
-              <RPSSelectionCard
-                text={option.icon}
-                onClick={() => {
-                  setUserSelection(option.name);
-                }}
-                // if the card has been selected,
-              />
-            </Grid2>
-          ))}
-        </Grid2>
-      </Box>
-    </>
+          <RPSSelectionCard
+            text={option.icon}
+            onClick={
+              !userSelectedOption
+                ? () => {
+                    setUserSelectedOption(option.name);
+                  }
+                : undefined
+            }
+          />
+        </Box>
+      ))}
+    </Box>
   );
 };
-
-// todo: the effect when one is chosen
