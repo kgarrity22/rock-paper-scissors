@@ -1,6 +1,10 @@
 import { Typography, useTheme } from "@mui/material";
 import { RPSSelectionType } from "./types";
 
+/**
+ * Instructions for game play
+ * - fade out once a user has started the game
+ */
 export const RPSInstructions = ({
   userSelectedOption,
 }: {
@@ -17,7 +21,6 @@ export const RPSInstructions = ({
           sm: theme.spacing(6),
         },
         fontSize: 18,
-        // fading props
         width: userSelectedOption ? 0 : 350,
         height: 0,
         opacity: userSelectedOption ? 0 : 1,

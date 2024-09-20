@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "../rps-selection/rps-selection-card";
 import { rpsOptions } from "../contstants";
-import { RPSSelectionType } from "../types";
-type FistDirectionType = "left" | "right";
+import { FistDirectionType, RPSSelectionType } from "../types";
+
 const ShakingFist = ({
   side,
   shouldShake,
@@ -28,6 +28,23 @@ const ShakingFist = ({
   );
 };
 
+const getWinnerText = (wlt: number) => {
+  switch (wlt) {
+    case 0: {
+      return "Tie! 🤝";
+    }
+    case 1: {
+      return "You Win! 😄";
+    }
+    case -1: {
+      return "Computer Wins 😕";
+    }
+    default: {
+      return "";
+    }
+  }
+};
+
 export const RPSFaceoff = ({
   shouldShake,
   countdownText,
@@ -39,15 +56,13 @@ export const RPSFaceoff = ({
   shouldShake: boolean;
   countdownText: string;
   showWinner: boolean;
-  isUserWinner: boolean;
-  userSelectedOption: RPSSelectionType;
-  computerSelectedOption: RPSSelectionType;
+  isUserWinner: number;
+  userSelectedOption: RPSSelectionType | null;
+  computerSelectedOption: RPSSelectionType | null;
 }) => {
-  // need to know what the selection is
   const theme = useTheme();
   const fistDirections: FistDirectionType[] = ["left", "right"];
 
-  ///
   return (
     <Box
       sx={{
@@ -55,9 +70,12 @@ export const RPSFaceoff = ({
         flexDirection: "column",
         justifyContent: "center",
         textAlign: "center",
+        mt: {
+          xs: theme.spacing(20),
+          sm: theme.spacing(5),
+        },
       }}
     >
-      {/** */}
       <Box
         display="flex"
         sx={{
@@ -86,18 +104,14 @@ export const RPSFaceoff = ({
           sx={{
             position: "absolute",
             opacity: showWinner ? 1 : 0,
-
             height: showWinner ? "fit-content" : 0,
             transition:
               "height 1s ease 4s, width 1s ease 4s, opacity 1s ease 2s",
           }}
         >
-          {isUserWinner ? "You win! 😄" : "Computer wins 😕"}
+          {getWinnerText(isUserWinner)}
         </Typography>
       </Box>
-
-      {/** FISTS Shaking */}
-
       <Box
         display="flex"
         justifyContent="center"
@@ -118,11 +132,9 @@ export const RPSFaceoff = ({
         ))}
       </Box>
 
-      {/** FIST SHAKE REsult */}
       <Box
         display="flex"
         sx={{
-          justifyContent: "center",
           gap: theme.spacing(3),
           mt: theme.spacing(3),
           opacity: showWinner ? 1 : 0,
@@ -131,35 +143,15 @@ export const RPSFaceoff = ({
           transition: "width .1s ease, height .1s ease, opacity .5s ease .6s",
         }}
       >
-        <Box>
-          {userSelectedOption && (
-            <RPSSelectionCard
-              height={150}
-              width={100}
-              fontSize={50}
-              sx={{ borderRadius: "20px", border: "1px solid" }}
-              text={
-                rpsOptions.find((el) => el.name === userSelectedOption)?.icon ??
-                ""
-              }
-            />
-          )}
-        </Box>
-        <Box>
-          {computerSelectedOption && (
-            <RPSSelectionCard
-              height={150}
-              width={100}
-              fontSize={50}
-              sx={{ borderRadius: "20px", border: "1px solid" }}
-              text={
-                rpsOptions.find((el) => el.name === computerSelectedOption)
-                  ?.icon ?? ""
-              }
-            />
-          )}
-        </Box>
-        {/** END FIST SHAKE REsult */}
+        {[userSelectedOption, computerSelectedOption].map((o) => (
+          <RPSSelectionCard
+            height={150}
+            width={100}
+            fontSize={50}
+            sx={{ borderRadius: "20px", border: "1px solid" }}
+            text={rpsOptions.find((el) => el.name === o)?.icon ?? ""}
+          />
+        ))}
       </Box>
     </Box>
   );

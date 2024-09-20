@@ -10,3 +10,5 @@ export type RPSGameHistoryType = {
   ties: number;
   losses: number;
 };
+
+export type FistDirectionType = "left" | "right";
