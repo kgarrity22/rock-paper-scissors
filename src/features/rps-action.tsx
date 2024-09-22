@@ -28,9 +28,9 @@ export const RPSLogic = () => {
   const [count, setCount] = useState(-4);
   const [shouldShake, setShouldShake] = useState(false);
 
-  const defaultGameHistory = { wins: 0, ties: 0, losses: 0 };
   const initialGameHistory = JSON.parse(
-    localStorage.getItem(`rps-game-history`) || `${defaultGameHistory}`
+    localStorage.getItem(`rps-game-history`) ||
+      `{ "wins": 0, "ties": 0, "losses": 0 }`
   );
 
   // Stores game history locally
@@ -42,7 +42,8 @@ export const RPSLogic = () => {
   useEffect(() => {
     // Grab cached game history (if it exists)
     const initialGameHistory = JSON.parse(
-      localStorage.getItem(`rps-game-history`) || `${defaultGameHistory}`
+      localStorage.getItem(`rps-game-history`) ||
+        `{ "wins": 0, "ties": 0, "losses": 0 }`
     );
     setGameHistory(initialGameHistory);
     setGHText(gameHistory);
