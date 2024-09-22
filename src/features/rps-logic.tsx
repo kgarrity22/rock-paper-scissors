@@ -1,15 +1,17 @@
 import { Box, useTheme } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RPSGameHistoryType, RPSSelectionType } from "./types";
 import { getRandom } from "../utils";
 import { computerChoices, countdownTextArray } from "./contstants";
 import { RPSFaceoff } from "./rps-faceoff";
 import { RPSInstructions } from "./rps-instructions";
 import { RPSSelection } from "./rps-selection";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { RPSGameHistory } from "./rps-game-history";
 
 export const RPSLogic = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   // Vars for storing user and computer match selections
   const [userSelectedOption, setUserSelectedOption] =
@@ -26,18 +28,35 @@ export const RPSLogic = () => {
   const [count, setCount] = useState(-4);
   const [shouldShake, setShouldShake] = useState(false);
 
-  // Grab cached game history (if it exists)
+  const defaultGameHistory = { wins: 0, ties: 0, losses: 0 };
   const initialGameHistory = JSON.parse(
-    localStorage.getItem(`rps-game-history`) ||
-      `{"wins": 0, "ties": 0, "losses": 0}`
+    localStorage.getItem(`rps-game-history`) || `${defaultGameHistory}`
   );
+
+  // Stores game history locally
   const [gameHistory, setGameHistory] =
     useState<RPSGameHistoryType>(initialGameHistory);
 
-  // Cache game history whenever we updated it locally
+  const [gHText, setGHText] = useState<RPSGameHistoryType>(initialGameHistory);
+
   useEffect(() => {
-    localStorage.setItem(`rps-game-history`, JSON.stringify(gameHistory));
-  }, [gameHistory]);
+    // Grab cached game history (if it exists)
+    const initialGameHistory = JSON.parse(
+      localStorage.getItem(`rps-game-history`) || `${defaultGameHistory}`
+    );
+    setGameHistory(initialGameHistory);
+    setGHText(gameHistory);
+  }, []);
+
+  // Update game history text (only once rest of UI has updated) & cache updated history
+  useEffect(() => {
+    if (showWinner) {
+      // Update game history text
+      setGHText(gameHistory);
+      // Cache updated game history
+      localStorage.setItem(`rps-game-history`, JSON.stringify(gameHistory));
+    }
+  }, [gameHistory, showWinner]);
 
   // Get the computer's choice when the user's choice changes
   useEffect(() => {
@@ -100,39 +119,37 @@ export const RPSLogic = () => {
     }
   }, [count]);
 
-  const contextStuff = useOutletContext();
-
-  console.log("ContextStuff: ", contextStuff);
-
-  const navigate = useNavigate();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        m: theme.spacing(2),
-        ml: theme.spacing(4),
-        mr: theme.spacing(4),
-        color: "#fff",
-        animation: "fade-in 4s ease",
-      }}
-    >
-      <RPSInstructions userSelectedOption={userSelectedOption} />
-      <RPSSelection
-        userSelectedOption={userSelectedOption}
-        setUserSelectedOption={setUserSelectedOption}
-        computerSelectedOption={computerSelectedOption}
-      />
-      <RPSFaceoff
-        shouldShake={shouldShake}
-        countdownText={countdownText}
-        showWinner={showWinner}
-        isUserWinner={winLossTie}
-        userSelectedOption={userSelectedOption}
-        computerSelectedOption={computerSelectedOption}
-        onRestartClicked={() => navigate("/restart")}
-      />
-    </Box>
+    <>
+      <RPSGameHistory gameCounts={gHText} />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          m: theme.spacing(2),
+          ml: theme.spacing(4),
+          mr: theme.spacing(4),
+          color: "#fff",
+          animation: "fade-in 4s ease",
+        }}
+      >
+        <RPSInstructions userSelectedOption={userSelectedOption} />
+        <RPSSelection
+          userSelectedOption={userSelectedOption}
+          setUserSelectedOption={setUserSelectedOption}
+          computerSelectedOption={computerSelectedOption}
+        />
+        <RPSFaceoff
+          shouldShake={shouldShake}
+          countdownText={countdownText}
+          showWinner={showWinner}
+          isUserWinner={winLossTie}
+          userSelectedOption={userSelectedOption}
+          computerSelectedOption={computerSelectedOption}
+          onRestartClicked={() => navigate("/restart")}
+        />
+      </Box>
+    </>
   );
 };
