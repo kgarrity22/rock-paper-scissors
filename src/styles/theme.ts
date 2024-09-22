@@ -34,7 +34,6 @@ export const themeOptions: ThemeOptions = {
     // },
   },
   spacing: 8,
-  //   borderRadius: 45,
   shape: {
     borderRadius: 6,
   },

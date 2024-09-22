@@ -1,6 +1,5 @@
 import { Box, SxProps, useTheme } from "@mui/material";
 
-// TODO in main: keep track of wins and losses for user and computer and store in local storage
 // Card the user will select in game of rps
 export const RPSSelectionCard = ({
   text,

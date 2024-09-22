@@ -2,7 +2,7 @@ import { QuestionMark } from "@mui/icons-material";
 import { Box, Typography, useTheme } from "@mui/material";
 import { RPSSelectionType } from "../types";
 import { RPSSelectionCard } from "./rps-selection-card";
-import { rpsOptions } from "../contstants";
+import { rpsOptions } from "../constants";
 
 /**
  * Displays the selections made by both the user and the computer

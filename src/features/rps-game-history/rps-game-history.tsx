@@ -1,6 +1,10 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { RPSGameHistoryType } from "../types";
 
+/**
+ * Displays WLT record of games played
+ * - saves record to local storage
+ */
 export const RPSGameHistory = ({
   gameCounts,
 }: {

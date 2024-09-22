@@ -7,7 +7,7 @@ import {
 import "./style.css";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/theme";
-import { RPS, RPSLogic } from "./features";
+import { RPSHeader, RPSLogic } from "./features";
 import { Layout } from "./components/layout";
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <RPS />,
+        element: <RPSHeader />,
         children: [
           { path: "", element: <RPSLogic /> },
           { path: "restart", element: <Navigate to="/" /> },

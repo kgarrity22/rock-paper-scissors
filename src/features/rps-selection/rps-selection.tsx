@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "./rps-selection-card";
 import { RPSSelectionOption, RPSSelectionType } from "../types";
 import { RPSSelectionsDisplay } from "./rps-selections-display";
-import { rpsOptions } from "../contstants";
+import { rpsOptions } from "../constants";
 
 // Selection screen for the user in game of rps
 export const RPSSelection = ({

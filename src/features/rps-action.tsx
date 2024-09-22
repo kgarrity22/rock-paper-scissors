@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import { RPSGameHistoryType, RPSSelectionType } from "./types";
 import { getRandom } from "../utils";
-import { computerChoices, countdownTextArray } from "./contstants";
+import { computerChoices, countdownTextArray } from "./constants";
 import { RPSFaceoff } from "./rps-faceoff";
 import { RPSInstructions } from "./rps-instructions";
 import { RPSSelection } from "./rps-selection";

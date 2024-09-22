@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
-export const RPS = () => {
+export const RPSHeader = () => {
   const theme = useTheme();
 
   return (

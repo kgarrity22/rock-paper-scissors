@@ -1,8 +1,11 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "../rps-selection/rps-selection-card";
-import { rpsOptions } from "../contstants";
+import { rpsOptions } from "../constants";
 import { FistDirectionType, RPSSelectionType } from "../types";
 
+/**
+ * Animated fist emojis to simulate the action of RPS game
+ */
 const ShakingFist = ({
   side,
   shouldShake,
@@ -28,6 +31,9 @@ const ShakingFist = ({
   );
 };
 
+/**
+ * Helper fx for displaying correct game result message
+ */
 const getWinnerText = (wlt: number) => {
   switch (wlt) {
     case 0: {
@@ -45,6 +51,10 @@ const getWinnerText = (wlt: number) => {
   }
 };
 
+/**
+ * Component for showing the action of the RPS game after selections have made
+ * - shows the countdown, fists shaking, computer selection and winner result as well as restart button
+ */
 export const RPSFaceoff = ({
   shouldShake,
   countdownText,
