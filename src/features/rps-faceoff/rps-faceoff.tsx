@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "../rps-selection/rps-selection-card";
 import { rpsOptions } from "../contstants";
 import { FistDirectionType, RPSSelectionType } from "../types";
@@ -52,6 +52,7 @@ export const RPSFaceoff = ({
   isUserWinner,
   userSelectedOption,
   computerSelectedOption,
+  onRestartClicked,
 }: {
   shouldShake: boolean;
   countdownText: string;
@@ -59,6 +60,7 @@ export const RPSFaceoff = ({
   isUserWinner: number;
   userSelectedOption: RPSSelectionType | null;
   computerSelectedOption: RPSSelectionType | null;
+  onRestartClicked: () => void;
 }) => {
   const theme = useTheme();
   const fistDirections: FistDirectionType[] = ["left", "right"];
@@ -143,8 +145,9 @@ export const RPSFaceoff = ({
           transition: "width .1s ease, height .1s ease, opacity .5s ease .6s",
         }}
       >
-        {[userSelectedOption, computerSelectedOption].map((o) => (
+        {[userSelectedOption, computerSelectedOption].map((o, i) => (
           <RPSSelectionCard
+            key={`${o}-${i}`}
             height={150}
             width={100}
             fontSize={50}
@@ -152,6 +155,32 @@ export const RPSFaceoff = ({
             text={rpsOptions.find((el) => el.name === o)?.icon ?? ""}
           />
         ))}
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        sx={{ mt: theme.spacing(10) }}
+      >
+        <Button
+          variant="outlined"
+          sx={{
+            height: showWinner ? 75 : 0,
+            width: 200,
+            border: "4px solid #00afb9",
+            fontSize: 30,
+            fontWeight: "bold",
+            textTransform: "uppercase",
+            color: "#fff",
+            "&:hover": {
+              border: "4px solid #fff",
+            },
+            opacity: showWinner ? 1 : 0,
+            transition: "height 1s ease 1s, opacity 1s ease 2s",
+          }}
+          onClick={onRestartClicked}
+        >
+          Restart
+        </Button>
       </Box>
     </Box>
   );

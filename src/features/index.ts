@@ -1,1 +1,2 @@
-export * from "./rps";
+export * from "./rps-layout";
+export * from "./rps-logic";

@@ -1,26 +1,27 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { RPSGameHistoryType, RPSSelectionType } from "./types";
 import { getRandom } from "../utils";
 import { computerChoices, countdownTextArray } from "./contstants";
-import { RPSGameHistory } from "./rps-game-history";
+import { RPSFaceoff } from "./rps-faceoff";
 import { RPSInstructions } from "./rps-instructions";
 import { RPSSelection } from "./rps-selection";
-import { RPSFaceoff } from "./rps-faceoff";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
-export const RPS = () => {
+export const RPSLogic = () => {
   const theme = useTheme();
 
-  // vars store user and computer match selections
+  // Vars for storing user and computer match selections
   const [userSelectedOption, setUserSelectedOption] =
     useState<RPSSelectionType | null>(null);
   const [computerSelectedOption, setComputerSelectedOption] =
     useState<RPSSelectionType | null>(null);
 
-  // var stores result of match
+  // Vars for handling results of match
   const [winLossTie, setWinLossTie] = useState(0);
-
   const [showWinner, setShowWinner] = useState(false);
+
+  // Vars for handling shake & countdown effect
   const [countdownText, setCountdownText] = useState("");
   const [count, setCount] = useState(-4);
   const [shouldShake, setShouldShake] = useState(false);
@@ -30,7 +31,6 @@ export const RPS = () => {
     localStorage.getItem(`rps-game-history`) ||
       `{"wins": 0, "ties": 0, "losses": 0}`
   );
-
   const [gameHistory, setGameHistory] =
     useState<RPSGameHistoryType>(initialGameHistory);
 
@@ -100,6 +100,11 @@ export const RPS = () => {
     }
   }, [count]);
 
+  const contextStuff = useOutletContext();
+
+  console.log("ContextStuff: ", contextStuff);
+
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -109,18 +114,10 @@ export const RPS = () => {
         m: theme.spacing(2),
         ml: theme.spacing(4),
         mr: theme.spacing(4),
-        color: "white",
+        color: "#fff",
+        animation: "fade-in 4s ease",
       }}
     >
-      <Typography
-        variant="h1"
-        sx={{
-          fontSize: { xs: 40, sm: 50 },
-        }}
-      >
-        Rock, Paper, Scissors!
-      </Typography>
-      <RPSGameHistory gameCounts={gameHistory} />
       <RPSInstructions userSelectedOption={userSelectedOption} />
       <RPSSelection
         userSelectedOption={userSelectedOption}
@@ -134,6 +131,7 @@ export const RPS = () => {
         isUserWinner={winLossTie}
         userSelectedOption={userSelectedOption}
         computerSelectedOption={computerSelectedOption}
+        onRestartClicked={() => navigate("/restart")}
       />
     </Box>
   );

@@ -2,6 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { RPSSelectionCard } from "./rps-selection-card";
 import { RPSSelectionOption, RPSSelectionType } from "../types";
 import { RPSSelectionsDisplay } from "./rps-selections-display";
+import { rpsOptions } from "../contstants";
 
 // Selection screen for the user in game of rps
 export const RPSSelection = ({
@@ -13,12 +14,6 @@ export const RPSSelection = ({
   setUserSelectedOption: (s: RPSSelectionType) => void;
   computerSelectedOption: RPSSelectionType | null;
 }) => {
-  const rpsOptions: RPSSelectionOption[] = [
-    { name: "Rock", icon: "✊" },
-    { name: "Paper", icon: "✋" },
-    { name: "Scissors", icon: "✌️" },
-  ];
-
   const theme = useTheme();
   return (
     <>

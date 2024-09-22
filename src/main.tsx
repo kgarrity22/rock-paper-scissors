@@ -1,16 +1,29 @@
 import * as ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import "./style.css";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/theme";
-import { RPS } from "./features";
+import { RPS, RPSLogic } from "./features";
 import { Layout } from "./components/layout";
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <Layout />,
-    children: [{ path: "/", element: <RPS /> }],
+    children: [
+      {
+        path: "/",
+        element: <RPS />,
+        children: [
+          { path: "", element: <RPSLogic /> },
+          { path: "restart", element: <Navigate to="/" /> },
+        ],
+      },
+    ],
   },
 ]);
 
