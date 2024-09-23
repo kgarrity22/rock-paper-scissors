@@ -1,12 +1,15 @@
 # Simple Rock, Paper Scissors App
+A simple react app that simulates a game of rock, paper, scissors with css animations & transitions
 
+<img width="1227" alt="rps-react" src="https://github.com/user-attachments/assets/24b7a7de-2028-46eb-aef7-256c939d276b">
 
 ## Description
+Inspired by a CodePen challenge, this app lets a user play a game of rock, paper, scissors vs. the computer. The computer selects randomly from the array so the user can expect to win, lose, and tie for the most part in equal measure. The app also tracks the win, lose, and tie record and writes it to local storage so history persists across refreshes. 
 
 ### Features
 - [X] **Basic Game Play**: User selects Rock, Paper, or Scissors, and the computer randomly selects one as well
 - [X] **Animations**: Animations for countdown and face-off-shake effects
-- [X] **Game History**: Track of the number of wins, losses, and ties & caches game history for when a user returns in the future
+- [X] **Game History**: Tracking for the number of wins, losses, and ties & caching game history for when a user returns in the future
 
 ### Built With
 
