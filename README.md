@@ -1,6 +1,7 @@
 # Simple Rock, Paper Scissors App
 A simple react app that simulates a game of rock, paper, scissors with css animations & transitions
 
+[Demo](https://rock-paper-scissors-three-neon.vercel.app/)
 <img width="1227" alt="rps-react" src="https://github.com/user-attachments/assets/24b7a7de-2028-46eb-aef7-256c939d276b">
 
 ## Description
@@ -22,7 +23,7 @@ Inspired by a CodePen challenge, this app lets a user play a game of rock, paper
 
 ### Installation
 
-View live demo or follow the instructions below to create and run your own copy locally:
+View [live demo](https://rock-paper-scissors-three-neon.vercel.app/) or follow the instructions below to create and run your own copy locally:
 
 1. Clone the repo
    ```sh
