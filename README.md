@@ -1,77 +1,79 @@
 # Simple Rock, Paper Scissors App
 
+
 ## Description
-This is a simple React application that simulates a game of Rock, Paper, Scissors where the user plays against the computer.
 
-## Features
+### Features
+- [X] **Basic Game Play**: User selects Rock, Paper, or Scissors, and the computer randomly selects one as well
+- [X] **Animations**: Animations for countdown and face-off-shake effects
+- [X] **Game History**: Track of the number of wins, losses, and ties & caches game history for when a user returns in the future
 
-- **User vs Computer**: User selects Rock, Paper, or Scissors, and the computer randomly selects one as well.
-- **Game History**: Keeps track of the number of wins, losses, and ties & caches game history for when a user returns in the future.
-- **Animations**: Includes animations for countdown and shake effects.
-- **Responsive Design**: Designed to be responsive and works well on different screen sizes.
+### Built With
 
-## Installation
-
-1. **Clone the repository**:
-
-sh
-git clone https://github.com/yourusername/rps-app.git
-cd rps-app
-
-2. **Install dependencies**:
-
-sh
-npm install
-
-3. **Start the development server**:
-
-sh
-npm start
+* [![React][React.js]][React-url]
+* [![Material UI][Material-ui]][Material-url]
+* [![Vite][Vite]][Vite-url]
 
 
-## Usage
+## Getting Started
 
-1. **Select an option**: Click on Rock, Paper, or Scissors to make your selection.
-2. **View the result**: The app will display the computer's choice and indicate whether you won, lost, or tied.
-3. **Check game history**: The app keeps track of your game history, which is displayed at the top of the screen.
+### Installation
 
-## Components
+View live demo or follow the instructions below to create and run your own copy locally:
 
-### `RPSLogic`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/kgarrity22/repo_name.git
+   ```
+2. Install packages
+   ```sh
+   yarn install
+   ```
 
-This component contains the main game logic, including state management for user and computer selections, game history, and countdown effects.
+### Executing program
 
-### `RPSHeader`
+* Running locally:
+```
+yarn dev
+```
 
-This component displays the header of the app, including the title "Rock, Paper, Scissors!".
 
-### `RPSSelection`
+## Help
 
-Allows the user to select Rock, Paper, or Scissors.
+If you have any issues 
 
-### `RPSFaceoff`
+## Contact
 
-Displays the faceoff between the user's choice and the computer's choice, including the countdown and shake effects.
+Kathleen Garrity
+kathleen.garrity223@gmail.com
 
-## File Structure
-#### Loose overview of file structure
+<!-- ## Version History
 
-src/
-├── features/
-│ ├── 
-│ ├──  constants.ts
-│ └── types.ts
-├── utils/
-│ └── functions used across features & components
-├── constants/
-│ └── constants used across features & components
-├── 
-│ └── index.ts
-├── main.tsx
-├── style.css
-└── ...
-
+- 0.2
+    - Various bug fixes and optimizations
+    - See [commit change]() or See [release history]()
+- 0.1
+    - Initial Release -->
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE.txt file for details
+
+## Acknowledgments
+
+Inspiration, code snippets, etc.
+* [CodePen Rock, Paper Scissors Challenge](https://codepen.io/challenges/2024/september/1)
+* [Google Fonts](https://fonts.google.com/)
+* [Github Pages](https://pages.github.com/)
+
+
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Material-UI]: https://img.shields.io/badge/mui-20232A?style=for-the-badge&logo=mui&logoColor=007FFF
+[Material-url]: https://mui.com/material-ui/
+[Vite]: https://img.shields.io/badge/vite-20232A?style=for-the-badge&logo=vite&logoColor=646CFF
+[Vite-url]: https://vitejs.dev/
+
+
+
